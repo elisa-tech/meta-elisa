@@ -2,17 +2,17 @@
 
 ------------
 
-The meta-elisa is a extension set for the Yocto base Linux Distribution such as AGL(Automotive Grade Linux) Distribution, which allows adding software package for safety critical system.
+The meta-elisa layer is a extension set for the Yocto based Linux Distribution AGL(Automotive Grade Linux), which allows adding software packages for safety critical systems.
 
-This layer is maintained by elisa automotive work group and elisa safety architecture work group.
+This layer is maintained by the elisa automotive work group and elisa safety architecture work group.
 
 # Contribute
 
 ------------
 
-If you think to interesting the elisa activity, please join our mailing list "https://lists.elisa.tech/".
+If you are interested the work ELISA does, please join our mailing list "https://lists.elisa.tech/".
 
-If you want to contribute for meta-elisa, please send patch to "https://github.com/elisa-tech/meta-elisa" using GitHub pull request.
+If you want to contribute to meta-elisa, please send your patches to "https://github.com/elisa-tech/meta-elisa" by GitHub pull requests.
 
 
 
@@ -20,10 +20,10 @@ If you want to contribute for meta-elisa, please send patch to "https://github.c
 
 ------------
 
-|  Name  |  GutHub  |
+|  Name  |  GitHub  |
 | :---- | :---- |
 |  Jochen Kall  |  https://github.com/Jochen-Kall  |
-|  Gab Paoloni |  https://github.com/gabpaoloni  |
+|  Gabriele Paoloni |  https://github.com/gabpaoloni  |
 |  Naoto Yamaguchi  |  https://github.com/AGLExport  |
 
 
