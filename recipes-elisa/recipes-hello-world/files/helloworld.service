@@ -1,0 +1,9 @@
+[Unit]
+Description=Elisa Hello World
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/hello_world
+
+[Install]
+WantedBy=multi-user.target
