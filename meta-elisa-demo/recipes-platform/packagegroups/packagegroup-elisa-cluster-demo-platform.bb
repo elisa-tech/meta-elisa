@@ -16,6 +16,7 @@ RDEPENDS_${PN} += "\
 
 
 ELISA_APPS = " \
+    hello-world \
     "
 
 ELISA_APIS = " \
