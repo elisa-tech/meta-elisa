@@ -1,0 +1,10 @@
+[Unit]
+Description=Elisa Demo Safety Application
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/safety-app
+
+[Install]
+WantedBy=multi-user.target
+
