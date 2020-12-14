@@ -1,0 +1,10 @@
+[Unit]
+Description=Elisa Demo Safety Application Signal Source
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/Signalsource
+
+[Install]
+WantedBy=multi-user.target
+

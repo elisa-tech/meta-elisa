@@ -6,6 +6,21 @@ The meta-elisa layer is a extension set for the Yocto based Linux Distribution A
 
 This layer is maintained by the elisa automotive work group and elisa safety architecture work group.
 
+
+# How to build elisa demo
+
+------------
+
+1) cd workspace_agl  (assuming 'workspace_agl' is the directory where AGL demo is cloned)  
+   More detail please ref.  : https://docs.automotivelinux.org/en/jellyfish/#0_Getting_Started/2_Building_AGL_Image/2_Downloading_AGL_Software/
+
+2) git clone https://github.com/elisa-tech/meta-elisa.git
+
+3) source meta-agl/scripts/aglsetup.sh -f  elisa-cluster-demo
+
+4) bitbake elisa-cluster-demo-platform   (to generate the image)
+
+
 # Contribute
 
 ------------

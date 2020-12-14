@@ -1,0 +1,298 @@
+From cb4ca65b2757a8f686582f9ba07957ec463136aa Mon Sep 17 00:00:00 2001
+From: Sudip Mukherjee <sudip.mukherjee@codethink.co.uk>
+Date: Sat, 17 Oct 2020 23:28:04 +0100
+Subject: [PATCH] test demo
+
+Signed-off-by: Sudip Mukherjee <sudip.mukherjee@codethink.co.uk>
+---
+ app/ValueSource.qml    | 145 ++++++++++++++++++++++++++++++++++++++++-
+ app/cluster-gauges.qml |  10 +--
+ 2 files changed, 148 insertions(+), 7 deletions(-)
+
+diff --git a/app/ValueSource.qml b/app/ValueSource.qml
+index 80ef95c..39048be 100644
+--- a/app/ValueSource.qml
++++ b/app/ValueSource.qml
+@@ -85,7 +85,11 @@ Item {
+ 
+     property bool start: true
+     property int turnSignal: -1
++    property int hazardSignal: -1
+     property bool startUp: false
++    property bool parkingBrake: false
++    property bool seatBelt: false
++    property bool openDoor: false
+     property real temperature: 0.6
+     property bool cruiseEnabled: false
+     property bool cruiseSet: false
+@@ -144,6 +148,12 @@ Item {
+         running: runAnimation
+         loops: 1
+ 
++            // Turn signal off
++            PropertyAction {
++                target: valueSource
++                property: "laneDepartureWarnEnabled"
++                value: true
++            }
+         // We want a small pause at the beginning, but we only want it to happen once.
+         PauseAnimation {
+             duration: 1000
+@@ -164,6 +174,21 @@ Item {
+                 property: "startUp"
+                 value: true
+             }
++            PropertyAction {
++                target: valueSource
++                property: "parkingBrake"
++                value: true
++            }
++            PropertyAction {
++                target: valueSource
++                property: "seatBelt"
++                value: true
++            }
++            PropertyAction {
++                target: valueSource
++                property: "openDoor"
++                value: true
++            }
+             PauseAnimation {
+                 duration: 1000
+             }
+@@ -172,6 +197,26 @@ Item {
+                 property: "startUp"
+                 value: false
+             }
++            PropertyAction {
++                target: valueSource
++                property: "parkingBrake"
++                value: false
++            }
++            PropertyAction {
++                target: valueSource
++                property: "seatBelt"
++                value: false
++            }
++            PropertyAction {
++                target: valueSource
++                property: "openDoor"
++                value: false
++            }
++            PropertyAction {
++                target: valueSource
++                property: "laneDepartureWarnEnabled"
++                value: false
++            }
+ 
+             ParallelAnimation {
+                 NumberAnimation {
+@@ -191,6 +236,13 @@ Item {
+                     duration: 3000
+                 }
+             }
++            // Turn signal on
++            PropertyAction {
++                target: valueSource
++                property: "turnSignal"
++                value: randomDirection()
++            }
++
+             ParallelAnimation {
+                 // We changed gears so we lost a bit of speed.
+                 NumberAnimation {
+@@ -226,6 +278,13 @@ Item {
+                     duration: 3000
+                 }
+             }
++            // Turn signal on
++            PropertyAction {
++                target: valueSource
++                property: "turnSignal"
++                value: -1
++            }
++
+             ParallelAnimation {
+                 // We changed gears so we lost a bit of speed.
+                 NumberAnimation {
+@@ -243,6 +302,13 @@ Item {
+                     duration: 600
+                 }
+             }
++            // Turn signal off
++            PropertyAction {
++                target: valueSource
++                property: "cruiseSet"
++                value: true
++            }
++
+             ParallelAnimation {
+                 NumberAnimation {
+                     target: valueSource
+@@ -294,6 +360,19 @@ Item {
+                 }
+             }
+ 
++            // Turn signal off
++            PropertyAction {
++                target: valueSource
++                property: "cruiseSet"
++                value: false
++            }
++            // Turn signal off
++            PropertyAction {
++                target: valueSource
++                property: "laneDepartureWarnEnabled"
++                value: true
++            }
++
+             // Slow down a bit
+             ParallelAnimation {
+                 NumberAnimation {
+@@ -311,6 +390,12 @@ Item {
+                     duration: 6000
+                 }
+             }
++            // Turn signal off
++            PropertyAction {
++                target: valueSource
++                property: "laneDepartureWarnEnabled"
++                value: false
++            }
+ 
+             // Turn signal on
+             PropertyAction {
+@@ -407,6 +492,12 @@ Item {
+                     duration: 5000
+                 }
+             }
++            // Turn signal on
++            PropertyAction {
++                target: valueSource
++                property: "hazardSignal"
++                value: 1
++            }
+ 
+             // Third to second gear.
+             NumberAnimation {
+@@ -441,6 +532,12 @@ Item {
+                 to: 6.5
+                 duration: 600
+             }
++            // Turn signal on
++            PropertyAction {
++                target: valueSource
++                property: "hazardSignal"
++                value: -1
++            }
+ 
+             // Second to first gear.
+             ParallelAnimation {
+@@ -459,9 +556,53 @@ Item {
+                     duration: 4500
+                 }
+             }
+-
++            PropertyAction {
++                target: valueSource
++                property: "parkingBrake"
++                value: true
++            }
++            PauseAnimation {
++                duration: 2000
++            }
++            PropertyAction {
++                target: valueSource
++                property: "seatBelt"
++                value: true
++            }
++            PauseAnimation {
++                duration: 2000
++            }
++            PropertyAction {
++                target: valueSource
++                property: "openDoor"
++                value: true
++            }
+             PauseAnimation {
+-                duration: 5000
++                duration: 4000
++            }
++            PropertyAction {
++                target: valueSource
++                property: "openDoor"
++                value: false
++            }
++            PauseAnimation {
++                duration: 1000
++            }
++            PropertyAction {
++                target: valueSource
++                property: "seatBelt"
++                value: false
++            }
++            PauseAnimation {
++                duration: 1000
++            }
++            PropertyAction {
++                target: valueSource
++                property: "parkingBrake"
++                value: false
++            }
++            PauseAnimation {
++                duration: 1000
+             }
+         }
+     }
+diff --git a/app/cluster-gauges.qml b/app/cluster-gauges.qml
+index e4c299b..c1a82ed 100644
+--- a/app/cluster-gauges.qml
++++ b/app/cluster-gauges.qml
+@@ -117,7 +117,7 @@ ApplicationWindow {
+                     height: parent.height * 0.75
+ 
+                     direction: Qt.LeftArrow
+-                    on: valueSource.turnSignal == Qt.LeftArrow
++                    on: valueSource.turnSignal == Qt.LeftArrow || valueSource.hazardSignal == 1
+                 }
+             }
+ 
+@@ -207,7 +207,7 @@ ApplicationWindow {
+                 border.color: "grey"
+ 
+                 Image {
+-                    source: valueSource.startUp ? './images/AGL_Icons_ParkingBrake_red.svg' : './images/AGL_Icons_ParkingBrake.svg'
++                    source: valueSource.parkingBrake ? './images/AGL_Icons_ParkingBrake_red.svg' : './images/AGL_Icons_ParkingBrake.svg'
+                     anchors.verticalCenter: parent.verticalCenter
+                     anchors.horizontalCenter: parent.horizontalCenter
+                     width: height
+@@ -269,7 +269,7 @@ ApplicationWindow {
+                 border.color: "grey"
+ 
+                 Image {
+-                    source: valueSource.startUp ? './images/AGL_Icons_Seatbelt_red.svg' : './images/AGL_Icons_Seatbelt.svg'
++                    source: valueSource.seatBelt ? './images/AGL_Icons_Seatbelt_red.svg' : './images/AGL_Icons_Seatbelt.svg'
+                     anchors.verticalCenter: parent.verticalCenter
+                     anchors.horizontalCenter: parent.horizontalCenter
+                     width: height
+@@ -288,7 +288,7 @@ ApplicationWindow {
+                 border.color: "grey"
+ 
+                 Image {
+-                    source: valueSource.startUp ? './images/AGL_Icons_OpenDoor_red.svg' : './images/AGL_Icons_OpenDoor.svg'
++                    source: valueSource.openDoor ? './images/AGL_Icons_OpenDoor_red.svg' : './images/AGL_Icons_OpenDoor.svg'
+                     anchors.verticalCenter: parent.verticalCenter
+                     anchors.horizontalCenter: parent.horizontalCenter
+                     width: height
+@@ -371,7 +371,7 @@ ApplicationWindow {
+                     height: parent.height * 0.75
+ 
+                     direction: Qt.RightArrow
+-                    on: valueSource.turnSignal == Qt.RightArrow
++                    on: valueSource.turnSignal == Qt.RightArrow || valueSource.hazardSignal == 1
+                 }
+             }
+         }
+-- 
+2.28.0
+
