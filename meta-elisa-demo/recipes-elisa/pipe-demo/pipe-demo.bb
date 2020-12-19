@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 #Once we have sorted out the repo location issue, this will move there
 SRC_URI = "git://github.com/Jochen-Kall/Safety-app.git;branch=control_pipe;protocol=https;"
 
-SRCREV = "8891a9def3031e6b988f0581c3cc0dff256da4cc"
+SRCREV = "0def64b41019890914f8a56af8efa7009c91964a"
 
 #needed to install systemd services
 inherit systemd
@@ -19,6 +19,8 @@ SYSTEMD_AUTO_ENABLE = "enable"
 #make the service files known
 SRC_URI += "file://signal-source.service"
 SRC_URI += "file://safety-app.service"
+
+DEPENDS += "ncurses"
 
 #Package version
 PV = "1.0+git${SRCPV}"
@@ -33,7 +35,6 @@ do_compile(){
 
 #installation routine, does nothing but copy the text file to the root directiory of the image for testing
 do_install() {
-    bbwarn "package name appearently is:" ${PN}
     oe_runmake install 'DESTDIR=${D}'
 # install the signal-source service and the safety-app service
     install -d -m 755 ${D}${systemd_unitdir}/system
