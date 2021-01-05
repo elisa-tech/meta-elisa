@@ -18,7 +18,9 @@ This layer is maintained by the elisa automotive work group and elisa safety arc
 
 3) source meta-agl/scripts/aglsetup.sh -f  elisa-cluster-demo
 
-4) bitbake elisa-cluster-demo-platform   (to generate the image)
+4) bitbake-layers add-layer ../meta-elisa/meta-elisa-demo (check on path depth)
+
+5) bitbake elisa-cluster-demo-platform   (to generate the image)
 
 
 # Contribute
