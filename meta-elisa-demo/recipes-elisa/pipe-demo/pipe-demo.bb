@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 #Once we have sorted out the repo location issue, this will move there
 SRC_URI = "git://github.com/Jochen-Kall/Safety-app.git;branch=control_pipe;protocol=https;"
 
-SRCREV = "0def64b41019890914f8a56af8efa7009c91964a"
+SRCREV = "8db75d886c915efc16e481e3fb63a09fd6e10eb6"
 
 #needed to install systemd services
 inherit systemd
