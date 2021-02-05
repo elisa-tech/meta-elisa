@@ -2,7 +2,7 @@ SUMMARY = "IPC by pipe for AGL cluster demo safety workload"
 DESCRIPTION = "Jochen layers it on ^^"
 
 #that seems to be necessary, the license here makes no sense, I just fumbled it so it would compile ;)
-LICENSE="GPL2"
+LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 SRC_URI = "git://github.com/elisa-tech/wg-automotive-safety-app.git;branch=control_pipe;protocol=https;"
