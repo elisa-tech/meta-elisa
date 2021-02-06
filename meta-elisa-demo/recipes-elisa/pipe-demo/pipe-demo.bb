@@ -21,6 +21,10 @@ SRC_URI += "file://safety-app.service"
 
 DEPENDS += "ncurses"
 
+# Build will break if AGL either disables softdog
+# or change to CONFIG_SOFT_WATCHDOG=y
+RDEPENDS_${PN} += "kernel-module-softdog"
+
 #Package version
 PV = "1.0+git${SRCPV}"
 
