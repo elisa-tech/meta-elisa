@@ -2,11 +2,10 @@ SUMMARY = "IPC by pipe for AGL cluster demo safety workload"
 DESCRIPTION = "Jochen layers it on ^^"
 
 #that seems to be necessary, the license here makes no sense, I just fumbled it so it would compile ;)
-LICENSE="GPL2"
+LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
-#Once we have sorted out the repo location issue, this will move there
-SRC_URI = "git://github.com/Jochen-Kall/Safety-app.git;branch=control_pipe;protocol=https;"
+SRC_URI = "git://github.com/elisa-tech/wg-automotive-safety-app.git;branch=control_pipe;protocol=https;"
 
 SRCREV = "8db75d886c915efc16e481e3fb63a09fd6e10eb6"
 
@@ -21,6 +20,10 @@ SRC_URI += "file://signal-source.service"
 SRC_URI += "file://safety-app.service"
 
 DEPENDS += "ncurses"
+
+# Build will break if AGL either disables softdog
+# or change to CONFIG_SOFT_WATCHDOG=y
+RDEPENDS_${PN} += "kernel-module-softdog"
 
 #Package version
 PV = "1.0+git${SRCPV}"
