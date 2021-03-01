@@ -21,9 +21,9 @@ SRC_URI += "file://safety-app.service"
 
 DEPENDS += "ncurses"
 
-# Build will break if AGL either disables softdog
-# or change to CONFIG_SOFT_WATCHDOG=y
-RDEPENDS_${PN} += "kernel-module-softdog"
+# Build will break if we disable i6300esb watchdog
+# or change to CONFIG_I6300ESB_WDT=y
+RDEPENDS_${PN} += "kernel-module-i6300esb"
 
 #Package version
 PV = "1.0+git${SRCPV}"
