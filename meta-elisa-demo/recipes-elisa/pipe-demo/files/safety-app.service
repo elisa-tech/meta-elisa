@@ -3,6 +3,7 @@ Description=Elisa Demo Safety Application
 
 [Service]
 Type=simple
+ExecStartPre=modprobe i6300esb
 ExecStart=/usr/bin/safety-app
 
 [Install]
