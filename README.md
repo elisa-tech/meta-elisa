@@ -38,7 +38,7 @@ This layer is maintained by the elisa automotive work group and elisa safety arc
    qemu-system-x86_64 -snapshot -device virtio-net-pci,netdev=net0,mac=52:54:00:12:35:02 \
    -watchdog i6300esb \
    -netdev user,id=net0,hostfwd=tcp::2222-:22,hostfwd=tcp::2323-:23 \
-   -drive file=./build/tmp/deploy/images/qemux86-64/agl-cluster-demo-platform-qemux86-64.ext4,if=virtio,format=raw \
+   -drive file=./build/tmp/deploy/images/qemux86-64/elisa-cluster-demo-platform-qemux86-64.ext4,if=virtio,format=raw \
    -show-cursor -usb -device usb-tablet -device virtio-rng-pci -vga virtio -soundhw hda \
    -machine q35 -cpu kvm64 -cpu qemu64,+ssse3,+sse4.1,+sse4.2,+popcnt -enable-kvm -m 4096  -smp 4 -m 2048 \
    -serial mon:stdio -serial null -kernel ./build/tmp/deploy/images/qemux86-64/bzImage \
