@@ -2,11 +2,16 @@
 
 ------------
 
-The meta-elisa layer is a extension set for the Yocto based Linux Distribution AGL(Automotive Grade Linux), which allows adding software packages for safety critical systems.
+The meta-elisa layer is an extension set for the Yocto-based AGL (Automotive Grade Linux) Linux Distribution.
+It supports the addition of software packages for safety critical systems to the AGL distribution.
 
-Currently meta-elisa contains the Autmotive WG cluster display example extending the AGL cluster demo with dummy safety functionality, the sources can be found at https://github.com/elisa-tech/wg-automotive-safety-app
+This repo should contain the Automotive Work Group cluster display demo and extend it with dummy safety functionality.
+Currently it just contains the configuration and build information for the demo and links to a dummy safety app.
+The source for the dummy safety functionality can be found in the [safety app repo](https://github.com/elisa-tech/wg-automotive-safety-app.).
 
-This layer is maintained by the elisa automotive work group and elisa safety architecture work group.
+Both the ELISA [Automotive](https://lists.elisa.tech/g/automotive) and 
+[Safety Architecture](https://lists.elisa.tech/g/safety-architecture) Work Groups
+maintain the meta-elisa layer.
 
 # How to build and run the elisa demo
 
@@ -45,13 +50,14 @@ This layer is maintained by the elisa automotive work group and elisa safety arc
    -append 'root=/dev/vda rw  console=ttyS0 mem=4096M ip=dhcp oprofile.timer=1 console=ttyS0,115200n8 quiet '
    ```
 
-# Contribution
+# Contributing
 
 ------------
 
-If you are interested the work ELISA does, please join our mailing list "https://lists.elisa.tech/".
+If you are interested in what ELISA does, please join the appropriate [General or Work Group mailing lists](https://lists.elisa.tech/).
 
-If you want to contribute to meta-elisa, please send your patches to "https://github.com/elisa-tech/meta-elisa" by GitHub pull requests.
+To contribute to meta-elisa, please send GitHub pull requests to [this repository](https://github.com/elisa-tech/meta-elisa)
+or the [Automotive Work Group safety app repository](https://github.com/elisa-tech/wg-automotive-safety-app), as appropriate.
 
 
 
