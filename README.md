@@ -43,11 +43,10 @@ Depending on the distribution, the following packages may also have to be instal
 	<pre><code>
 	<b>AGL_RELEASE></b> git config --global user.name "Firstname Lastname"
 	<b>AGL_RELEASE></b> git config --global user.email "YourId@YourEmailProvider"
-	</pre>
+	</code></pre>
 
 	Configure the build tools and install the source according to the
 	[AGL instructions](https://docs.automotivelinux.org/en/jellyfish/#0_Getting_Started/2_Building_AGL_Image/2_Downloading_AGL_Software/).
-
 
 2) Clone meta-elisa into the workspace.  Note that the meta-elisa.git must be cloned from a forked GitHub repo,
 	not the ELISA meta-elisa (this) repo, in order to issue pull requests to the ELISA meta-elisa.
@@ -55,19 +54,20 @@ Depending on the distribution, the following packages may also have to be instal
 	[GitHub Workflow Summary](https://gist.github.com/Chaser324/ce0505fbed06b947d962) for details.
 	<pre><code>
 	<b>AGL_RELEASE></b> git clone https://github.com/elisa-tech/meta-elisa.git
-	</pre>
+	</code></pre>
 
-4) For building and rebuilding, the shell enviroment must be set.
+3) For building and rebuilding, the shell enviroment must be set.
 	<pre><code>
 	<b>AGL_RELEASE></b> source meta-agl/scripts/aglsetup.sh -f elisa-cluster-demo
-	</pre>
+	</code></pre>
 	Build the elisa-cluster-demo-platform target.
 	<pre><code>
 	<b>AGL_RELEASE/build></b> bitbake elisa-cluster-demo-platform   (to generate the image)
-	</pre>
+	</code></pre>
 	Be advised, building for the first time takes 10-20 hours depending on the machine, rebuilding around 10 minutes.
 	In either case 100-150 GB of disc space are required.
-5) To run the demo with QEMU: Refer to the 
+
+4) To run the demo with QEMU: Refer to the 
 	[AGL instruction](https://docs.automotivelinux.org/en/jellyfish/#0_Getting_Started/2_Building_AGL_Image/5_1_x86_Emulation_and_Hardware/#3-deploying-the-agl-demo-image)
 	to install the distribution's qemu package and set the runtime envrironment.
 
@@ -82,7 +82,7 @@ Depending on the distribution, the following packages may also have to be instal
 	-machine q35 -cpu kvm64 -cpu qemu64,+ssse3,+sse4.1,+sse4.2,+popcnt -enable-kvm -m 4096  -smp 4 -m 2048 \
 	-serial mon:stdio -serial null -kernel ./build/tmp/deploy/images/qemux86-64/bzImage \
 	-append 'root=/dev/vda rw  console=ttyS0 mem=4096M ip=dhcp oprofile.timer=1 console=ttyS0,115200n8 quiet '
-	</pre>
+	</code></pre>
 
 # Contributing
 
