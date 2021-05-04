@@ -46,7 +46,7 @@ Depending on the distribution, the following packages may also have to be instal
 	</code></pre>
 
 	Configure the build tools and install the source according to the
-	[AGL instructions](https://docs.automotivelinux.org/en/jellyfish/#0_Getting_Started/2_Building_AGL_Image/2_Downloading_AGL_Software/).
+	[AGL instructions](https://docs.automotivelinux.org/en/koi/#0_Getting_Started/2_Building_AGL_Image/2_Downloading_AGL_Software/).
 
 2) Clone meta-elisa into the workspace.  Note that the meta-elisa.git must be cloned from a forked GitHub repo,
 	not the ELISA meta-elisa (this) repo, in order to issue pull requests to the ELISA meta-elisa.
@@ -68,7 +68,7 @@ Depending on the distribution, the following packages may also have to be instal
 	In either case 100-150 GB of disc space are required.
 
 4) To run the demo with QEMU: Refer to the 
-	[AGL instruction](https://docs.automotivelinux.org/en/jellyfish/#0_Getting_Started/2_Building_AGL_Image/5_1_x86_Emulation_and_Hardware/#3-deploying-the-agl-demo-image)
+	[AGL instruction](https://docs.automotivelinux.org/en/koi/#0_Getting_Started/2_Building_AGL_Image/5_1_x86_Emulation_and_Hardware/#3-deploying-the-agl-demo-image)
 	to install the distribution's qemu package and set the runtime envrironment.
 
 	Contrary to those instructions, the demo uses the following shell command rather than calling runqemu:
