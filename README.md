@@ -83,6 +83,14 @@ Depending on the distribution, the following packages may also have to be instal
 	-serial mon:stdio -serial null -kernel ./build/tmp/deploy/images/qemux86-64/bzImage \
 	-append 'root=/dev/vda rw  console=ttyS0 mem=4096M ip=dhcp oprofile.timer=1 console=ttyS0,115200n8 quiet '
 	</code></pre>
+	
+5) Interacting with the Demo:
+	The demo offers an interface via a named pipe to trigger safe state from within the safety signal source, or corrupt the communication between signal source and safety app to test the mechanisms.
+	Alternatively to writing to the pipe directly, an ncurses based control panel can be used as more convenient alternative.
+	To access the control panel, log into the running QEMU instance as user "root" (no password needed) and start the control panel application 
+	```
+	Signalsource-control-panel
+	```
 
 # Contributing
 
