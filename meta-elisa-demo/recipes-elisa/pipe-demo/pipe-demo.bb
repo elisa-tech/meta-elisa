@@ -5,7 +5,7 @@ DESCRIPTION = "Jochen layers it on ^^"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
-SRC_URI = "git://github.com/elisa-tech/wg-automotive-safety-app.git;branch=control_pipe;protocol=https;"
+SRC_URI = "git://github.com/elisa-tech/wg-automotive-safety-app.git;branch=main;protocol=https;"
 
 SRCREV = "8db75d886c915efc16e481e3fb63a09fd6e10eb6"
 
