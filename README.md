@@ -78,7 +78,7 @@ Depending on the distribution, the following packages may also have to be instal
 	-watchdog i6300esb \
 	-netdev user,id=net0,hostfwd=tcp::2222-:22,hostfwd=tcp::2323-:23 \
 	-drive file=./build/tmp/deploy/images/qemux86-64/elisa-cluster-demo-platform-qemux86-64.ext4,if=virtio,format=raw \
-	-show-cursor -usb -device usb-tablet -device virtio-rng-pci -vga virtio -soundhw hda \
+	-usb -device usb-tablet -device virtio-rng-pci -vga virtio -soundhw hda \
 	-machine q35 -cpu kvm64 -cpu qemu64,+ssse3,+sse4.1,+sse4.2,+popcnt -enable-kvm -m 4096  -smp 4 -m 2048 \
 	-serial mon:stdio -serial null -kernel ./build/tmp/deploy/images/qemux86-64/bzImage \
 	-append 'root=/dev/vda rw  console=ttyS0 mem=4096M ip=dhcp oprofile.timer=1 console=ttyS0,115200n8 quiet '
