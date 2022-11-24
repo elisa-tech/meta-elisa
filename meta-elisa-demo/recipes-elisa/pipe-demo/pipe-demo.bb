@@ -12,7 +12,7 @@ SRCREV = "8db75d886c915efc16e481e3fb63a09fd6e10eb6"
 #needed to install systemd services
 inherit systemd
 #add and enable the services
-SYSTEMD_SERVICE_${PN} = "signal-source.service safety-app.service"
+SYSTEMD_SERVICE:${PN} = "signal-source.service safety-app.service"
 SYSTEMD_AUTO_ENABLE = "enable"
 
 #make the service files known
@@ -23,7 +23,7 @@ DEPENDS += "ncurses"
 
 # Build will break if we disable i6300esb watchdog
 # or change to CONFIG_I6300ESB_WDT=y
-RDEPENDS_${PN} += "kernel-module-i6300esb"
+RDEPENDS:${PN} += "kernel-module-i6300esb"
 
 #Package version
 PV = "1.0+git${SRCPV}"

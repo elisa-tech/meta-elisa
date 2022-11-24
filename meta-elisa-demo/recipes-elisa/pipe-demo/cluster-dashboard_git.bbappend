@@ -1,2 +1,2 @@
 
-RDEPENDS_${PN} += "pipe-demo"
+RDEPENDS:${PN} += "pipe-demo"

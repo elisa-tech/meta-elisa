@@ -8,8 +8,8 @@ require elisa-cluster-demo-platform.bb
 
 LICENSE = "MIT"
 
-IMAGE_FEATURES_append = " dev-pkgs"
-IMAGE_INSTALL_append = " kernel-dev kernel-devsrc"
+IMAGE_FEATURES:append = " dev-pkgs"
+IMAGE_INSTALL:append = " kernel-dev kernel-devsrc"
 
 inherit populate_sdk populate_sdk_qt5
 
@@ -22,6 +22,6 @@ addtask do_populate_sdk after do_rootfs
 # Use TOOLCHAIN_HOST_TASK instead of adding to the packagegroup
 # wayland-scanner is in nativesdk-wayland-dev !
 # option: add also nativesdk-qtwayland-tools
-TOOLCHAIN_HOST_TASK_append = " nativesdk-wayland nativesdk-wayland-dev"
+TOOLCHAIN_HOST_TASK:append = " nativesdk-wayland nativesdk-wayland-dev"
 
-TOOLCHAIN_HOST_TASK_append = " nativesdk-perl-modules "
+TOOLCHAIN_HOST_TASK:append = " nativesdk-perl-modules "
