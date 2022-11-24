@@ -1,5 +1,0 @@
-[Unit]
-Description=CAN interface helper
-
-[Service]
-ExecStart=/usr/sbin/can-dev-mapping-helper.sh
