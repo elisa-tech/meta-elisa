@@ -22,7 +22,7 @@ ELISA_APPS = " \
 ELISA_APIS = " \
     "
 
-RDEPENDS_${PN}_append = " \
+RDEPENDS_${PN}:append = " \
     ${ELISA_APPS} \
     ${ELISA_APIS} \
 "

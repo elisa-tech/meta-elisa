@@ -1,22 +1,22 @@
-From 55480b98b21ed8b19e50722787ccbcac6a273be2 Mon Sep 17 00:00:00 2001
+From 8deeb3bb4bfffb276ea5fdb82370c546c3a7ad5f Mon Sep 17 00:00:00 2001
 From: Sudip Mukherjee <sudip.mukherjee@codethink.co.uk>
-Date: Wed, 25 Nov 2020 15:08:58 +0000
+Date: Fri, 18 Nov 2022 21:00:25 +0000
 Subject: [PATCH] Add new icon and use can signals to corrupt
 
 Signed-off-by: Sudip Mukherjee <sudip.mukherjee@codethink.co.uk>
 ---
- app/ValueSource.qml    |  7 +++-
+ app/ValueSource.qml    | 11 +++---
  app/cluster-gauges.qml | 22 ++++++++++++
  app/images/danger.svg  | 79 ++++++++++++++++++++++++++++++++++++++++++
  app/images/images.qrc  |  1 +
- 4 files changed, 108 insertions(+), 1 deletion(-)
+ 4 files changed, 109 insertions(+), 4 deletions(-)
  create mode 100644 app/images/danger.svg
 
 diff --git a/app/ValueSource.qml b/app/ValueSource.qml
-index 80ef95c..8ed9b70 100644
+index 511a2a1..cc35817 100644
 --- a/app/ValueSource.qml
 +++ b/app/ValueSource.qml
-@@ -91,6 +91,8 @@ Item {
+@@ -91,15 +91,15 @@ Item {
      property bool cruiseSet: false
      property bool laneDepartureWarnEnabled: false
      property bool displayNumericSpeeds: true
@@ -25,18 +25,35 @@ index 80ef95c..8ed9b70 100644
  
      function randomDirection() {
          return Math.random() > 0.5 ? Qt.LeftArrow : Qt.RightArrow;
-@@ -135,7 +137,10 @@ Item {
+     }
+ 
+     Component.onCompleted : {
+-        if(!runAnimation) {
+-            VehicleSignals.connect()
+-        }
++        VehicleSignals.connect()
+     }
+ 
+     Connections {
+@@ -118,6 +118,7 @@ Item {
+ 	    VehicleSignals.subscribe("Vehicle.Cabin.SteeringWheel.Switches.CruiseCancel")
+ 	    VehicleSignals.subscribe("Vehicle.Cabin.SteeringWheel.Switches.LaneDepartureWarning")
+ 	    VehicleSignals.subscribe("Vehicle.Cabin.SteeringWheel.Switches.Info")
++	    VehicleSignals.subscribe("Vehicle.Cabin.SteeringWheel.Switches.Horn")
+ 	    VehicleSignals.get("Vehicle.Cabin.Infotainment.HMI.DistanceUnit")
+ 	    VehicleSignals.subscribe("Vehicle.Cabin.Infotainment.HMI.DistanceUnit")
+ 	}
+@@ -164,7 +165,9 @@ Item {
+             } else if (path === "Vehicle.Cabin.SteeringWheel.Switches.LaneDepartureWarning" && value === "true") {
                  valueSource.laneDepartureWarnEnabled = !valueSource.laneDepartureWarnEnabled
-             }
-             else if (uid === "event.info" && value === "true") {
+             } else if (path === "Vehicle.Cabin.SteeringWheel.Switches.Info" && value === "true") {
 -                valueSource.displayNumericSpeeds = !valueSource.displayNumericSpeeds
 +                valueSource.displaySpeed = !valueSource.displaySpeed
-+            }
-+            else if (uid === "event.horn" && value === "true") {
++            } else if (path === "Vehicle.Cabin.SteeringWheel.Switches.Horn" && value === "true") {
 +                valueSource.displayDanger = !valueSource.displayDanger
-             }
-         }
-     }
+             } else if (path === "Vehicle.Cabin.Infotainment.HMI.DistanceUnit") {
+                 if (value === "km") {
+                     valueSource.mphDisplay = false
 diff --git a/app/cluster-gauges.qml b/app/cluster-gauges.qml
 index e4c299b..d70db47 100644
 --- a/app/cluster-gauges.qml
@@ -174,5 +191,5 @@ index 6b4f2d2..86e4572 100644
      </qresource>
  </RCC>
 -- 
-2.20.1
+2.30.2
 
