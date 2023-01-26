@@ -10,4 +10,7 @@ IMAGE_FEATURES:append = " \
 # add packages for cluster demo platform (include demo apps) here
 IMAGE_INSTALL:append = " \
     packagegroup-elisa-cluster-demo-platform \
+    strace \
+    perf \
+    stress-ng \
     "
