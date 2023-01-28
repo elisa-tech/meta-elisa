@@ -1,8 +1,9 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 SRC_URI += " file://0001-Add-new-icon.patch \
-             file://cluster-dashboard.conf \
            "
+
+CLUSTER_DEMO_VISS_HOSTNAME = "localhost"
 
 RDEPENDS:${PN}:append = " kuksa-val-agl \
                           kuksa-dbc-feeder \
