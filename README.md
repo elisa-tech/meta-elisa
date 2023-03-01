@@ -75,7 +75,7 @@ Depending on the distribution, the following packages may also have to be instal
 	Note that simulated hardware watchdog i6300 must be activated for the demo to work properly:
 	<pre><code>
 	<b>AGL_RELEASE></b> qemu-system-x86_64 -snapshot -device virtio-net-pci,netdev=net0,mac=52:54:00:12:35:02 \
-	-watchdog i6300esb \
+	-device i6300esb \
 	-netdev user,id=net0,hostfwd=tcp::2222-:22,hostfwd=tcp::2323-:23 \
 	-drive file=./build/tmp/deploy/images/qemux86-64/elisa-cluster-demo-platform-qemux86-64.ext4,if=virtio,format=raw \
 	-usb -device usb-tablet -device virtio-rng-pci -vga virtio -soundhw hda \
