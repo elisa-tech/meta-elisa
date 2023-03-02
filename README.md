@@ -25,7 +25,7 @@ That is, in
 	```
 Currently, that would be
 	```
-	~/whatever/AGL_TOP/jellyfish.
+	~/whatever/AGL_TOP/needlefish.
 	```
 The working directory for a command will be denoted with an
 	**```
