@@ -91,7 +91,7 @@ Depending on the distribution, the following packages may also have to be instal
 	```
 	Signalsource-control-panel
 	```
-
+Consider to use the prepared docker file and included scripts to simplify the build and handling of buid environment. The necessary steps are documented in wg-automotive [Docker_container readme](https://github.com/elisa-tech/wg-automotive/tree/master/Docker_container).
 # Contributing
 
 ------------
