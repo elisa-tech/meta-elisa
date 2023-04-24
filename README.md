@@ -33,10 +33,10 @@ The working directory for a command will be denoted with an
 	```**
 prompt.
 
-0) Start with a stable [supported Linux distribution](https://www.yoctoproject.org/docs/3.1.2/ref-manual/ref-manual.html#detailed-supported-distros).
+0) Start with a stable [supported Linux distribution](https://docs.yoctoproject.org/ref-manual/system-requirements.html#supported-linux-distributions).
 Consider creating a stable environment with a chroot or virtualisation solution if the Linux distribution being used is a rolling release version.
 Ensure the packages required for your distribution have been installed (also on the
-[supported Linux distributions](https://www.yoctoproject.org/docs/3.1.2/ref-manual/ref-manual.html#detailed-supported-distros) page).
+[build host requirements](https://www.yoctoproject.org/docs/3.1.2/ref-manual/ref-manual.html#detailed-supported-distros) page).
 Depending on the distribution, the following packages may also have to be installed: curl, python-is-python3, tree
 
 1) The AGL gerrit site requires a git user name and e-mail address.  Should they not be set, execute the following commands.
