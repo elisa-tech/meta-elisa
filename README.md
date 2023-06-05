@@ -65,7 +65,7 @@ Depending on the distribution, the following packages may also have to be instal
 	<pre><code>
 	<b>AGL_RELEASE/build></b> echo 'SSTATE_MIRRORS += "file://.* https://elisa-builder-00.iol.unh.edu/sstate/needlefish/PATH"' >> config/local.conf
 	</code></pre>
-	Using the SSTATE can reduce the build time considerably.
+	Using the sstate can reduce the build time considerably.
 
 5) Build the elisa-cluster-demo-platform target.
 	<pre><code>
