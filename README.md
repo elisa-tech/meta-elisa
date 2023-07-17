@@ -60,7 +60,14 @@ Depending on the distribution, the following packages may also have to be instal
 	<pre><code>
 	<b>AGL_RELEASE></b> source meta-agl/scripts/aglsetup.sh -f elisa-cluster-demo
 	</code></pre>
-	Build the elisa-cluster-demo-platform target.
+
+4) [Optional, but recommended] Configure the build to utilize ELISA's sstate mirror for prebuild packages.
+	<pre><code>
+	<b>AGL_RELEASE/build></b> echo 'SSTATE_MIRRORS += "file://.* https://elisa-builder-00.iol.unh.edu/sstate/needlefish/PATH"' >> config/local.conf
+	</code></pre>
+	Using the sstate can reduce the build time considerably.
+
+5) Build the elisa-cluster-demo-platform target.
 	<pre><code>
 	<b>AGL_RELEASE/build></b> bitbake elisa-cluster-demo-platform   (to generate the image)
 	</code></pre>
