@@ -16,7 +16,32 @@ maintain the meta-elisa layer.
 
 # How to build and run the ELISA Cluster demo
 
-------------
+There are three different ways to optain an image of the cluster demo:
+1. Prebuild Image
+   - if you just want to run the demo without building  
+   [click here for the instructions.](#accessing-prebuild-images)
+2. Build via Docker container
+   - if you want to build the demo  
+   [click here for the instructions.](https://github.com/elisa-tech/wg-automotive/tree/master/Docker_container)
+3. Manual Build
+   - if the docker approach does not work for you or you want to get to know the build process  
+   [click here for the instructions.](#manual-build)
+
+## Accessing Prebuild Images
+
+Prebuild images of the demo are available in the [meta-elisa-ci package registry](https://gitlab.com/elisa-tech/meta-elisa-ci/-/packages/13411445).
+To download and extract the most recent image execute the following steps:
+```sh
+> wget https://gitlab.com/elisa-tech/meta-elisa-ci/-/package_files/80033203/download -O elisa-automotive-wg-demo.tar.gz
+> tar -xvf elisa-automotive-wg-demo.tar.gz
+> gunzip elisa-automotive-wg-demo/*
+```
+The `elise-automotive-wg-demo` directory now contains a kernel image `bzImage` as well as a file system image `.ext4`.
+Given this, you can now run the demo. [Click here for the instructions.](#running-the-demo)
+
+In case you would like to know more about the CI that has generated this image, reference [this blog post](https://elisa.tech/blog/2023/04/05/elisa-ci-enablement-automation-tools-for-easier-collaboration/).
+
+## Manual Build
 **NOTE:** Following the agl installation instructions' terminology (see below),
 the build environment will be installed in the current AGL_RELEASE directory of new workspace named AGL_TOP.
 That is, in
@@ -74,12 +99,16 @@ Depending on the distribution, the following packages may also have to be instal
 	Be advised, building for the first time takes 10-20 hours depending on the machine, rebuilding around 10 minutes.
 	In either case 100-150 GB of disc space are required.
 
-4) To run the demo with QEMU: Refer to the 
+
+## Running the Demo
+
+1) To run the demo with QEMU: Refer to the 
 	[AGL instruction](https://docs.automotivelinux.org/en/needlefish/#0_Getting_Started/2_Building_AGL_Image/5_1_x86_Emulation_and_Hardware/#3-deploying-the-agl-demo-image)
 	to install the distribution's qemu package and set the runtime envrironment.
 
-	Contrary to those instructions, the demo uses the following shell command rather than calling runqemu:
-	Note that simulated hardware watchdog i6300 must be activated for the demo to work properly:
+	Contrary to those instructions, the demo uses the following shell command rather than calling runqemu.
+	Note that simulated hardware watchdog i6300 must be activated for the demo to work properly.
+	Also note that if you have not build the image yourself, you need to change the path of the `-drive` flag to point to the `.ext4` file and the the path of the `-kernel` flag to point to the `bzImage` file.
 	<pre><code>
 	<b>AGL_RELEASE></b> qemu-system-x86_64 -snapshot -device virtio-net-pci,netdev=net0,mac=52:54:00:12:35:02 \
 	-device i6300esb \
@@ -91,14 +120,13 @@ Depending on the distribution, the following packages may also have to be instal
 	-append 'root=/dev/vda rw  console=ttyS0 mem=4096M ip=dhcp oprofile.timer=1 console=ttyS0,115200n8 quiet '
 	</code></pre>
 	
-5) Interacting with the Demo:
+2) Interacting with the Demo:
 	The demo offers an interface via a named pipe to trigger safe state from within the safety signal source, or corrupt the communication between signal source and safety app to test the mechanisms.
 	Alternatively to writing to the pipe directly, an ncurses based control panel can be used as more convenient alternative.
 	To access the control panel, log into the running QEMU instance as user "root" (no password needed) and start the control panel application 
 	```
 	Signalsource-control-panel
 	```
-Consider to use the prepared docker file and included scripts to simplify the build and handling of buid environment. The necessary steps are documented in wg-automotive [Docker_container readme](https://github.com/elisa-tech/wg-automotive/tree/master/Docker_container).
 
 # Troubleshooting
 
