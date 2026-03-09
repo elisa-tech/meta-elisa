@@ -1,6 +1,6 @@
 DESCRIPTION = "Elisa extended AGL Cluster Demo Platform image currently contains a simple cluster interface."
 
-require recipes-platform/images/agl-cluster-demo-platform.bb
+require recipes-platform/images/agl-cluster-demo-qt.bb
 
 LICENSE = "MIT"
 

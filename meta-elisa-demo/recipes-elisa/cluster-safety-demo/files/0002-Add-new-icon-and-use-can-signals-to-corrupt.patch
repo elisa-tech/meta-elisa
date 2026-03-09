@@ -1,0 +1,194 @@
+From fab1be51c4616cb108c98e4a5d294186e1e71eac Mon Sep 17 00:00:00 2001
+From: Sathishkumar Duraisamy <sathishkumar.d.cbe@gmail.com>
+Date: Sat, 17 Jan 2026 23:56:09 +0100
+Subject: [PATCH 2/2] Add new icon and use can signals to corrupt
+
+Recreated the patch.
+Orignal author  Sudip Mukherjee <sudip.mukherjee@codethink.co.uk>
+
+Signed-off-by: Sathishkumar Duraisamy <sathishkumar.d.cbe@gmail.com>
+---
+ app/ValueSource.qml       |  9 +++--
+ app/cluster-dashboard.qml | 23 ++++++++++++
+ app/images/danger.svg     | 79 +++++++++++++++++++++++++++++++++++++++
+ app/images/images.qrc     |  1 +
+ 4 files changed, 109 insertions(+), 3 deletions(-)
+ create mode 100644 app/images/danger.svg
+
+diff --git a/app/ValueSource.qml b/app/ValueSource.qml
+index cc358ba..7b8b6df 100644
+--- a/app/ValueSource.qml
++++ b/app/ValueSource.qml
+@@ -97,15 +97,15 @@ Item {
+     property bool cruiseSet: false
+     property bool laneDepartureWarnEnabled: false
+     property bool displayNumericSpeeds: true
++    property bool displayDanger: false
++    property bool displaySpeed: true
+ 
+     function randomDirection() {
+         return Math.random() > 0.5 ? Qt.LeftArrow : Qt.RightArrow;
+     }
+ 
+     Component.onCompleted : {
+-        if(!runAnimation) {
+-            VehicleSignals.connect()
+-        }
++        VehicleSignals.connect()
+     }
+ 
+     Connections {
+@@ -124,6 +124,7 @@ Item {
+ 	    VehicleSignals.subscribe("Vehicle.Cabin.SteeringWheel.Switches.CruiseCancel")
+ 	    VehicleSignals.subscribe("Vehicle.Cabin.SteeringWheel.Switches.LaneDepartureWarning")
+ 	    VehicleSignals.subscribe("Vehicle.Cabin.SteeringWheel.Switches.Info")
++            VehicleSignals.subscribe("Vehicle.Cabin.SteeringWheel.Switches.Horn")
+ 	    VehicleSignals.get("Vehicle.Cabin.Infotainment.HMI.DistanceUnit")
+ 	    VehicleSignals.subscribe("Vehicle.Cabin.Infotainment.HMI.DistanceUnit")
+ 	}
+@@ -171,6 +172,8 @@ Item {
+                 valueSource.laneDepartureWarnEnabled = !valueSource.laneDepartureWarnEnabled
+             } else if (path === "Vehicle.Cabin.SteeringWheel.Switches.Info" && value === "true") {
+                 valueSource.displayNumericSpeeds = !valueSource.displayNumericSpeeds
++            } else if (path === "Vehicle.Cabin.SteeringWheel.Switches.Horn" && value === "true") {
++                valueSource.displayDanger = !valueSource.displayDanger
+             } else if (path === "Vehicle.Cabin.Infotainment.HMI.DistanceUnit") {
+                 if (value === "km") {
+                     valueSource.mphDisplay = false
+diff --git a/app/cluster-dashboard.qml b/app/cluster-dashboard.qml
+index 2647109..89ff5e2 100644
+--- a/app/cluster-dashboard.qml
++++ b/app/cluster-dashboard.qml
+@@ -392,6 +392,7 @@ ApplicationWindow {
+             //y: (parent.height - height) / 2
+             width: parent.width * 0.9
+             height: width
++            visible: valueSource.displaySpeed === true
+ 
+             unit: valueSource.mphDisplay ? "MPH" : "km/h"
+             maxValue: valueSource.mphDisplay ? 120 : 200
+@@ -457,6 +458,28 @@ ApplicationWindow {
+         }
+     }
+ 
++    Rectangle {
++        width: 300
++        height: 44
++        radius: height / 5
++        x: (parent.width - width) / 2
++        y: 136
++
++        color: "black"
++        border.width: 0
++        visible: valueSource.displayDanger === true
++
++        Image {
++            source: './images/danger.svg'
++            anchors.verticalCenter: parent.verticalCenter
++            anchors.horizontalCenter: parent.horizontalCenter
++            width: parent.width
++            height: parent.height
++            fillMode: Image.PreserveAspectFit
++        }
++    }
++
++
+     Image {
+         source: './images/agl_title_793x211.png'
+         x: (parent.width - width) / 2
+diff --git a/app/images/danger.svg b/app/images/danger.svg
+new file mode 100644
+index 0000000..71cc73e
+--- /dev/null
++++ b/app/images/danger.svg
+@@ -0,0 +1,79 @@
++<?xml version="1.0" encoding="UTF-8" standalone="no"?>
++<!-- Generator: Gravit.io -->
++
++<svg
++   xmlns:dc="http://purl.org/dc/elements/1.1/"
++   xmlns:cc="http://creativecommons.org/ns#"
++   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
++   xmlns:svg="http://www.w3.org/2000/svg"
++   xmlns="http://www.w3.org/2000/svg"
++   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
++   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
++   style="isolation:isolate"
++   viewBox="0 0 300 48.4"
++   width="300"
++   height="44"
++   version="1.1"
++   id="svg19"
++   sodipodi:docname="danger.svg"
++   inkscape:version="0.92.1 r15371">
++  <metadata
++     id="metadata23">
++    <rdf:RDF>
++      <cc:Work
++         rdf:about="">
++        <dc:format>image/svg+xml</dc:format>
++        <dc:type
++           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
++        <dc:title />
++      </cc:Work>
++    </rdf:RDF>
++  </metadata>
++  <sodipodi:namedview
++     pagecolor="#ffffff"
++     bordercolor="#666666"
++     borderopacity="1"
++     objecttolerance="10"
++     gridtolerance="10"
++     guidetolerance="10"
++     inkscape:pageopacity="0"
++     inkscape:pageshadow="2"
++     inkscape:window-width="1360"
++     inkscape:window-height="704"
++     id="namedview21"
++     showgrid="false"
++     inkscape:zoom="2.3636364"
++     inkscape:cx="128.70659"
++     inkscape:cy="14.910639"
++     inkscape:window-x="0"
++     inkscape:window-y="27"
++     inkscape:window-maximized="1"
++     inkscape:current-layer="g17" />
++  <defs
++     id="defs5">
++    <clipPath
++       id="_clipPath_TSVlv3nGxTHjYdmmiNPUAXEwajrzHHKb">
++      <rect
++         width="300"
++         height="43"
++         id="rect2" />
++    </clipPath>
++  </defs>
++  <g
++     clip-path="url(#_clipPath_TSVlv3nGxTHjYdmmiNPUAXEwajrzHHKb)"
++     id="g17"
++     transform="matrix(1.220152,0,0,1,-57.242307,0)">
++    <text
++       xml:space="preserve"
++       style="font-style:normal;font-weight:normal;font-size:118.74510956px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:2.96862769"
++       x="65.403641"
++       y="43.842876"
++       id="text3698"
++       transform="matrix(0.98491351,-0.01499485,-0.41016299,1.0215621,0,0)"><tspan
++         sodipodi:role="line"
++         id="tspan3696"
++         x="27.403641"
++         y="43.842876"
++         style="font-size:51.4562149px;stroke-width:2.96862769">DANGER</tspan></text>
++  </g>
++</svg>
+diff --git a/app/images/images.qrc b/app/images/images.qrc
+index 70b56d1..caa8a47 100644
+--- a/app/images/images.qrc
++++ b/app/images/images.qrc
+@@ -37,5 +37,6 @@
+         <file>AGL_Icons_Seatbelt_red.svg</file>
+         <file>AGL_Icons_Seatbelt_yellow.svg</file>
+         <file>carbon_icons/temperature--water.svg</file>
++        <file>danger.svg</file>
+     </qresource>
+ </RCC>
